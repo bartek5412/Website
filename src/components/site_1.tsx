@@ -1,9 +1,12 @@
-import React from 'react';
-import Licznik from './licznik';
-import { CouterWithReducer } from './reducer';
+import React from "react";
+import Licznik from "./licznik";
+import { CounterWithReducer } from "./reducer";
 const About: React.FC = () => {
-    return <div><h1>About Page</h1>
-    <CouterWithReducer></CouterWithReducer>
-    <Licznik></Licznik></div>;
+  return (
+    <div>
+      <CounterWithReducer></CounterWithReducer>
+      <Licznik></Licznik>
+    </div>
+  );
 };
 export default About;

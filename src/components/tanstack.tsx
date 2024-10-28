@@ -40,7 +40,6 @@ function Weather() {
     setSelectHour(Number(e.target.value));
   };
 
-  // Upewnij się, że te warunki są na początku, aby zawsze zwrócić JSX
   if (isLoading) return <p>Ładowanie danych...</p>;
   if (error) return <p>Błąd: {error.message}</p>;
 
@@ -53,29 +52,35 @@ function Weather() {
   const handleRain = data?.hourly.rain[selectHour];
 
   return (
-    <div>
-      <button onClick={toggleSelectedTime}>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">
+        Prognoza Pogody
+      </h2>
+      <button
+        onClick={toggleSelectedTime}
+        className="mb-4 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700 transition"
+      >
         {selectedTime ? "Prognoza godzinowa" : "Aktualna prognoza"}
       </button>
 
       {selectedTime ? (
         <>
-          <h2>Aktualna prognoza</h2>
-
           <p>Aktualna temperatura:</p>
           <p>
             Godzina: {currentHour}:{currentMinutes}:{currentSeconds},
-            temperatura:
-            {currentTemperature}°C
+            temperatura: {currentTemperature}°C
           </p>
           <p>Opady: {currentRain} mm</p>
         </>
       ) : (
         <div>
-          {" "}
           <p>Prognoza godzinowa</p>
           <p>Wybierz godzinę:</p>
-          <select value={selectHour} onChange={handleHourChange}>
+          <select
+            value={selectHour}
+            onChange={handleHourChange}
+            className="border rounded px-2 py-1"
+          >
             {Array.from({ length: 24 }, (_, index) => (
               <option key={index} value={index}>
                 {index}:00
